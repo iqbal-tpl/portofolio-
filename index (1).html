@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | M Iqbal Pratama - X RPL</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome CDN untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Konfigurasi Tema Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            950: '#070510',
+                            900: '#0d091f',
+                            800: '#150f30',
+                            700: '#21184a',
+                        },
+                        neon: {
+                            purple: '#a855f7',
+                            violet: '#7c3aed',
+                            fuchsia: '#d946ef',
+                            cyan: '#22d3ee',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Kustomisasi Scrollbar Futuristik */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070510;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #7c3aed, #d946ef);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a855f7;
+        }
+
+        /* Background Cyber Grid */
+        .cyber-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(168, 85, 247, 0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(168, 85, 247, 0.07) 1px, transparent 1px);
+        }
+
+        /* Animasi Kursor Typing Effect */
+        .typing-cursor::after {
+            content: '_';
+            display: inline-block;
+            color: #d946ef;
+            font-weight: 700;
+            animation: blink 0.75s infinite;
+            margin-left: 3px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Efek Hover Kartu Futuristik */
+        .futuristic-card {
+            background: rgba(21, 15, 48, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .futuristic-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(168, 85, 247, 0.75);
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.1);
+        }
+
+        /* Efek Glow Neon pada Tombol */
+        .neon-btn {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+            transition: all 0.3s ease;
+        }
+        .neon-btn:hover {
+            box-shadow: 0 0 30px rgba(217, 70, 239, 0.75);
+            transform: translateY(-2px);
+        }
+
+        /* Animasi Orbit / Melayang Avatar */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        .animate-float {
+            animation: float 4.5s ease-in-out infinite;
+        }
+
+        /* Animasi Pulse Ring */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 14s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-cyber-950 text-slate-200 font-sans antialiased selection:bg-purple-600 selection:text-white overflow-x-hidden">
+
+    <!-- ==================== 1. STICKY NAVBAR ==================== -->
+    <header id="navbar" class="sticky top-0 z-50 w-full bg-cyber-950/80 backdrop-blur-xl border-b border-purple-500/20 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Brand Logo -->
+                <a href="#home" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-600 to-fuchsia-600 flex items-center justify-center text-white font-bold shadow-lg shadow-purple-600/40 group-hover:rotate-6 transition-transform">
+                        <i class="fa-solid fa-terminal text-sm"></i>
+                    </div>
+                    <span class="font-mono font-bold text-lg tracking-wider text-white">
+                        IQBAL<span class="text-purple-400">.DEV</span>
+                    </span>
+                </a>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium text-slate-300 hover:text-purple-400 transition-colors">Home</a>
+                    <a href="#about" class="text-sm font-medium text-slate-300 hover:text-purple-400 transition-colors">About</a>
+                    <a href="#skills" class="text-sm font-medium text-slate-300 hover:text-purple-400 transition-colors">Skills</a>
+                    <a href="#projects" class="text-sm font-medium text-slate-300 hover:text-purple-400 transition-colors">Projects</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white text-sm font-semibold neon-btn">
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- Tombol Mobile Hamburger -->
+                <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden p-2 rounded-lg text-purple-300 hover:text-white hover:bg-purple-900/40 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cyber-900/95 backdrop-blur-xl border-b border-purple-500/20 px-4 pt-2 pb-5 space-y-2">
+            <a href="#home" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-purple-400 hover:bg-purple-900/30">Home</a>
+            <a href="#about" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-purple-400 hover:bg-purple-900/30">About</a>
+            <a href="#skills" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-purple-400 hover:bg-purple-900/30">Skills</a>
+            <a href="#projects" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-purple-400 hover:bg-purple-900/30">Projects</a>
+            <a href="#contact" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold text-white bg-gradient-to-r from-purple-600 to-fuchsia-600 text-center mt-2">Contact</a>
+        </div>
+    </header>
+
+    <!-- ==================== 2. HERO SECTION ==================== -->
+    <section id="home" class="relative min-h-[90vh] flex items-center cyber-grid py-20 overflow-hidden">
+        <!-- Ambient Neon Glow Orbs -->
+        <div class="absolute top-10 -left-24 w-96 h-96 bg-purple-600/25 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 -right-24 w-96 h-96 bg-fuchsia-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
+                
+                <!-- Kolom Kiri: Teks Identitas -->
+                <div class="w-full lg:w-3/5 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-purple-300 font-mono text-xs mb-6 shadow-inner">
+                        <span class="w-2 h-2 rounded-full bg-fuchsia-400 animate-ping"></span>
+                        <span>X RPL &bull; SMK MAARIF BATU</span>
+                    </div>
+
+                    <p class="font-mono text-purple-400 text-sm sm:text-base mb-2 tracking-widest uppercase">
+                        &lt;Hello_World /&gt; Saya adalah
+                    </p>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight mb-4 capitalize">
+                        m iqbal <span class="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-indigo-400 bg-clip-text text-transparent">pratama</span>
+                    </h1>
+
+                    <!-- Animasi Typing Effect pada Role -->
+                    <div class="font-mono text-lg sm:text-2xl text-slate-300 mb-6 h-9 flex items-center justify-center lg:justify-start">
+                        <span class="text-purple-400 mr-2">&gt;</span>
+                        <span id="typing-role" class="font-bold text-white typing-cursor"></span>
+                    </div>
+
+                    <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8">
+                        Membangun antarmuka web modern dan mempelajari logika algoritma masa depan dari bangku Rekayasa Perangkat Lunak.
+                    </p>
+
+                    <!-- Tombol Utama -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-bold text-sm tracking-wide uppercase neon-btn flex items-center justify-center gap-2.5">
+                            <span>Lihat Project</span>
+                            <i class="fa-solid fa-rocket"></i>
+                        </a>
+                        <a href="#about" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-cyber-800/80 hover:bg-purple-900/40 text-purple-200 border border-purple-500/30 hover:border-purple-400 font-semibold text-sm tracking-wide transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-user-astronaut text-purple-400"></i>
+                            <span>Tentang Saya</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Avatar Dicebear Futuristik -->
+                <div class="w-full lg:w-2/5 flex justify-center">
+                    <div class="relative animate-float">
+                        <!-- Cincin Cyber Berputar -->
+                        <div class="absolute -inset-3 rounded-full border-2 border-dashed border-purple-500/40 animate-spin-slow"></div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-purple-600 to-fuchsia-600 rounded-full blur-2xl opacity-30"></div>
+
+                        <!-- Bingkai Avatar -->
+                        <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full p-1.5 bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-cyan-400 shadow-2xl">
+                            <div class="w-full h-full rounded-full bg-cyber-900 overflow-hidden flex items-center justify-center border-4 border-cyber-950">
+                                <img 
+                                    src="https://api.dicebear.com/9.x/avataaars/svg?seed=IqbalPratamaRPL&backgroundColor=150f30&top=shortWaved&clothing=graphicShirt&clothingColor=7c3aed&accessories=wayfarers" 
+                                    alt="Avatar M Iqbal Pratama" 
+                                    class="w-full h-full object-cover"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Floating Status Card -->
+                        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-cyber-900/90 backdrop-blur-md px-4 py-2 rounded-full border border-purple-500/40 shadow-lg flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span class="font-mono text-xs font-semibold text-purple-200">Status: Ready to Code</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. SECTION ABOUT & SKILLS ==================== -->
+    <section id="about" class="py-24 bg-cyber-900/50 border-t border-purple-500/15 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Header Section -->
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="font-mono text-xs uppercase tracking-[0.25em] text-purple-400 font-bold">01 // PROFILE &amp; CAPABILITIES</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">About Me &amp; Tech Skills</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-fuchsia-500 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                
+                <!-- Kartu About Me (5 Kolom) -->
+                <div class="lg:col-span-5 futuristic-card rounded-3xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-600/20 border border-purple-500/40 text-purple-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <span class="font-mono text-xs text-purple-400 bg-purple-950/90 px-3 py-1 rounded-full border border-purple-500/30">
+                                ID: X-RPL-01
+                            </span>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-white mb-4">Tentang Saya</h3>
+                        <p class="text-slate-300 leading-relaxed mb-6 text-sm sm:text-base">
+                            "Saya adalah siswa kelas X RPL yang sedang mempelajari dasar pemrograman web, logika algoritma, dan pembuatan aplikasi digital."
+                        </p>
+                    </div>
+
+                    <!-- Spesifikasi Biodata -->
+                    <div class="space-y-3 pt-6 border-t border-purple-500/20 font-mono text-xs sm:text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Nama:</span>
+                            <span class="text-white font-semibold capitalize">m iqbal pratama</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Kelas / Jurusan:</span>
+                            <span class="text-purple-300 font-semibold">X RPL</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Instansi:</span>
+                            <span class="text-white font-semibold">SMK MAARIF BATU</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Role / Minat:</span>
+                            <span class="px-2.5 py-0.5 rounded bg-purple-600/30 border border-purple-400/40 text-purple-300 font-bold">
+                                Web Developer
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu Skills dengan Progress Bar & Badge (7 Kolom) -->
+                <div id="skills" class="lg:col-span-7 futuristic-card rounded-3xl p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Keahlian &amp; Teknologi</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-1">Stack utama yang sedang dikuasai dan dikembangkan</p>
+                        </div>
+                        <i class="fa-solid fa-layer-group text-2xl text-purple-400"></i>
+                    </div>
+
+                    <!-- Progress Bars -->
+                    <div class="space-y-5 mb-8">
+                        <!-- HTML5 -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5 text-sm">
+                                <span class="font-semibold text-white flex items-center gap-2">
+                                    <i class="fa-brands fa-html5 text-orange-400"></i> HTML5
+                                </span>
+                                <span class="font-mono text-xs text-purple-300">88%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-cyber-950 rounded-full overflow-hidden border border-purple-500/20">
+                                <div class="h-full bg-gradient-to-r from-purple-600 to-fuchsia-500 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+
+                        <!-- CSS3 -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5 text-sm">
+                                <span class="font-semibold text-white flex items-center gap-2">
+                                    <i class="fa-brands fa-css3-alt text-sky-400"></i> CSS3
+                                </span>
+                                <span class="font-mono text-xs text-purple-300">82%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-cyber-950 rounded-full overflow-hidden border border-purple-500/20">
+                                <div class="h-full bg-gradient-to-r from-purple-600 to-fuchsia-500 rounded-full" style="width: 82%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Dasar JavaScript -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5 text-sm">
+                                <span class="font-semibold text-white flex items-center gap-2">
+                                    <i class="fa-brands fa-js text-yellow-400"></i> Dasar JavaScript
+                                </span>
+                                <span class="font-mono text-xs text-purple-300">72%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-cyber-950 rounded-full overflow-hidden border border-purple-500/20">
+                                <div class="h-full bg-gradient-to-r from-purple-600 to-fuchsia-500 rounded-full" style="width: 72%"></div>
+                            </div>
+                        </div>
+
+                        <!-- UI Design -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5 text-sm">
+                                <span class="font-semibold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-bezier-curve text-pink-400"></i> UI Design
+                                </span>
+                                <span class="font-mono text-xs text-purple-300">80%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-cyber-950 rounded-full overflow-hidden border border-purple-500/20">
+                                <div class="h-full bg-gradient-to-r from-purple-600 to-fuchsia-500 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Prompt Engineering -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5 text-sm">
+                                <span class="font-semibold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-cyan-400"></i> Prompt Engineering
+                                </span>
+                                <span class="font-mono text-xs text-purple-300">90%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-cyber-950 rounded-full overflow-hidden border border-purple-500/20">
+                                <div class="h-full bg-gradient-to-r from-purple-600 to-cyan-400 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cyber Skill Badges -->
+                    <div>
+                        <p class="font-mono text-xs text-slate-400 uppercase tracking-wider mb-3">Skill Badges:</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 rounded-lg bg-purple-950/90 border border-purple-500/30 text-purple-300 font-mono text-xs hover:border-fuchsia-400 hover:text-white transition-colors">
+                                &lt;HTML5 /&gt;
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-purple-950/90 border border-purple-500/30 text-purple-300 font-mono text-xs hover:border-fuchsia-400 hover:text-white transition-colors">
+                                { CSS3 }
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-purple-950/90 border border-purple-500/30 text-purple-300 font-mono text-xs hover:border-fuchsia-400 hover:text-white transition-colors">
+                                JS_Basics()
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-purple-950/90 border border-purple-500/30 text-purple-300 font-mono text-xs hover:border-fuchsia-400 hover:text-white transition-colors">
+                                UI_Design
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-purple-950/90 border border-purple-500/30 text-purple-300 font-mono text-xs hover:border-fuchsia-400 hover:text-white transition-colors">
+                                AI_Prompting
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. SECTION PROJECTS ==================== -->
+    <section id="projects" class="py-24 cyber-grid border-t border-purple-500/15 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Header Section -->
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="font-mono text-xs uppercase tracking-[0.25em] text-purple-400 font-bold">02 // LAB &amp; EXPERIMENTS</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Project Latihan RPL</h2>
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                    Eksplorasi kode, logika algoritma dasar, dan perancangan antarmuka digital yang telah saya kerjakan.
+                </p>
+                <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-fuchsia-500 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Card Grid 3 Kolom -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <article class="futuristic-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" 
+                                alt="Website Profil Pribadi" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyber-900 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-cyber-950/80 backdrop-blur-md border border-purple-500/40 text-purple-300 font-mono text-[11px]">
+                                01 // WEB
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
+                                Website Profil Pribadi
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Dibuat menggunakan HTML &amp; Tailwind CSS. Menampilkan identitas personal, keahlian, dan portofolio dengan tampilan responsif.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">HTML5</span>
+                                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">Tailwind CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="openDemo('Website Profil Pribadi', 'Website portofolio satu halaman berbasis HTML5 dan Tailwind CSS dengan desain futuristik dark mode dan tata letak responsif di semua perangkat.', 'https://github.com/iqbal-tpl', false)" class="w-full py-2.5 px-4 rounded-xl bg-purple-600/20 hover:bg-gradient-to-r hover:from-purple-600 hover:to-fuchsia-600 text-purple-300 hover:text-white border border-purple-500/40 font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                            <span>Demo Project</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="futuristic-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" 
+                                alt="Kalkulator Web Sederhana" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyber-900 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-cyber-950/80 backdrop-blur-md border border-fuchsia-500/40 text-fuchsia-300 font-mono text-[11px]">
+                                02 // LOGIC
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
+                                Kalkulator Web Sederhana
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Latihan logika aritmatika dasar. Mengolah input pengguna menggunakan fungsi JavaScript untuk operasi hitung real-time.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">JavaScript</span>
+                                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">Algoritma</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="openDemo('Kalkulator Web Sederhana', 'Latihan implementasi logika aritmatika dasar menggunakan JavaScript DOM. Coba simulasi kalkulator langsung di bawah ini!', 'https://github.com/iqbal-tpl', true)" class="w-full py-2.5 px-4 rounded-xl bg-purple-600/20 hover:bg-gradient-to-r hover:from-purple-600 hover:to-fuchsia-600 text-purple-300 hover:text-white border border-purple-500/40 font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calculator text-xs"></i>
+                            <span>Demo Interaktif</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="futuristic-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80" 
+                                alt="Desain UI Aplikasi Sekolah" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyber-900 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-cyber-950/80 backdrop-blur-md border border-cyan-500/40 text-cyan-300 font-mono text-[11px]">
+                                03 // UI/UX
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
+                                Desain UI Aplikasi Sekolah
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Rancangan antarmuka pengguna modern untuk aplikasi portal siswa SMK MAARIF BATU yang bersih, intuitif, dan mudah diakses.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">UI Design</span>
+                                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">Wireframe</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="openDemo('Desain UI Aplikasi Sekolah', 'Konsep antarmuka pengguna (User Interface) modern untuk digitalisasi absensi, jadwal pelajaran, dan informasi sekolah SMK MAARIF BATU.', 'https://github.com/iqbal-tpl', false)" class="w-full py-2.5 px-4 rounded-xl bg-purple-600/20 hover:bg-gradient-to-r hover:from-purple-600 hover:to-fuchsia-600 text-purple-300 hover:text-white border border-purple-500/40 font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-eye text-xs"></i>
+                            <span>Demo Project</span>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. SECTION CONTACT & FOOTER ==================== -->
+    <section id="contact" class="py-24 bg-cyber-900/70 border-t border-purple-500/20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-cyber-950 pointer-events-none"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="futuristic-card rounded-3xl p-8 sm:p-12 border border-purple-500/30 text-center">
+                <span class="font-mono text-xs uppercase tracking-[0.25em] text-fuchsia-400 font-bold">
+                    03 // ESTABLISH CONNECTION
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 mb-4">
+                    Mari Terhubung &amp; Berkolaborasi
+                </h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base mb-10">
+                    Tertarik berdiskusi seputar Web Development, belajar coding bersama, atau sekadar menyapa? Hubungi saya melalui platform di bawah ini.
+                </p>
+
+                <!-- 3 Kartu Kontak -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-left">
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/iq_bal20_" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl bg-cyber-950/80 border border-purple-500/25 hover:border-fuchsia-500 transition-all flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 text-white flex items-center justify-center text-xl shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-pink-600/20">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <p class="font-mono text-xs text-slate-400">Instagram</p>
+                            <p class="text-sm font-bold text-white group-hover:text-fuchsia-400 transition-colors truncate">@iq_bal20_</p>
+                        </div>
+                    </a>
+
+                    <!-- GitHub -->
+                    <a href="https://github.com/iqbal-tpl" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl bg-cyber-950/80 border border-purple-500/25 hover:border-purple-400 transition-all flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center text-xl shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-purple-600/20">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <p class="font-mono text-xs text-slate-400">GitHub</p>
+                            <p class="text-sm font-bold text-white group-hover:text-purple-400 transition-colors truncate">github.com/iqbal-tpl</p>
+                        </div>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:mahdanmahdan460@gmail.com" class="group p-5 rounded-2xl bg-cyber-950/80 border border-purple-500/25 hover:border-cyan-400 transition-all flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-cyan-600 text-white flex items-center justify-center text-xl shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-cyan-600/20">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <p class="font-mono text-xs text-slate-400">Email</p>
+                            <p class="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors truncate">mahdanmahdan460@gmail.com</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cyber-950 border-t border-purple-500/20 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
+            <div class="font-mono text-xs flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                <span>X RPL &bull; SMK MAARIF BATU</span>
+            </div>
+            <p class="text-center sm:text-right">
+                &copy; <span id="year"></span> <strong class="text-white capitalize">m iqbal pratama</strong>. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL DEMO PROJECT ==================== -->
+    <div id="demo-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="bg-cyber-900 border border-purple-500/50 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl shadow-purple-900/50">
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-mono text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                    SYSTEM_PREVIEW
+                </span>
+                <button onclick="closeDemo()" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <h3 id="modal-title" class="text-2xl font-bold text-white mb-2">Judul Project</h3>
+            <p id="modal-desc" class="text-slate-300 text-sm leading-relaxed mb-5">Deskripsi project.</p>
+
+            <!-- Mini Kalkulator untuk Demo Project 2 -->
+            <div id="calc-widget" class="hidden bg-cyber-950 border border-purple-500/30 rounded-2xl p-4 mb-5">
+                <p class="font-mono text-xs text-fuchsia-400 mb-3">&gt; Simulasi Kalkulator Aritmatika:</p>
+                <div class="grid grid-cols-2 gap-2 mb-3">
+                    <input type="number" id="num1" placeholder="Angka pertama" class="w-full px-3 py-2 rounded-lg bg-cyber-900 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-purple-400">
+                    <input type="number" id="num2" placeholder="Angka kedua" class="w-full px-3 py-2 rounded-lg bg-cyber-900 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-purple-400">
+                </div>
+                <div class="grid grid-cols-4 gap-2 mb-3">
+                    <button onclick="hitung('+')" class="py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold">+</button>
+                    <button onclick="hitung('-')" class="py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold">-</button>
+                    <button onclick="hitung('*')" class="py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold">&times;</button>
+                    <button onclick="hitung('/')" class="py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold">&divide;</button>
+                </div>
+                <div class="p-2.5 rounded-lg bg-cyber-900 border border-purple-500/20 font-mono text-sm text-right text-slate-300">
+                    Output: <span id="calc-output" class="text-cyan-400 font-bold">0</span>
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <a id="modal-repo" href="https://github.com/iqbal-tpl" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white text-sm font-semibold text-center flex items-center justify-center gap-2 hover:opacity-95">
+                    <i class="fa-brands fa-github"></i>
+                    <span>Lihat GitHub</span>
+                </a>
+                <button onclick="closeDemo()" class="py-2.5 px-5 rounded-xl bg-cyber-800 hover:bg-cyber-700 text-slate-200 text-sm font-semibold border border-purple-500/20">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // 1. Tahun Dinamis Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 2. Toggle Menu Mobile
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 3. Typing Effect pada Role
+        const roles = [
+            "Web Developer",
+            "Siswa X RPL",
+            "Frontend Enthusiast",
+            "UI Designer"
+        ];
+        const typingTarget = document.getElementById('typing-role');
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function runTypingEffect() {
+            const currentWord = roles[wordIndex];
+            
+            if (isDeleting) {
+                typingTarget.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingTarget.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 50 : 105;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                speed = 1800;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % roles.length;
+                speed = 350;
+            }
+
+            setTimeout(runTypingEffect, speed);
+        }
+
+        document.addEventListener('DOMContentLoaded', runTypingEffect);
+
+        // 4. Kontrol Modal Demo & Mini Kalkulator
+        const demoModal = document.getElementById('demo-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalRepo = document.getElementById('modal-repo');
+        const calcWidget = document.getElementById('calc-widget');
+
+        function openDemo(title, desc, repoUrl, withCalc) {
+            modalTitle.textContent = title;
+            modalDesc.textContent = desc;
+            modalRepo.href = repoUrl;
+
+            if (withCalc) {
+                calcWidget.classList.remove('hidden');
+            } else {
+                calcWidget.classList.add('hidden');
+            }
+
+            demoModal.classList.remove('hidden');
+            demoModal.classList.add('flex');
+        }
+
+        function closeDemo() {
+            demoModal.classList.add('hidden');
+            demoModal.classList.remove('flex');
+        }
+
+        demoModal.addEventListener('click', (e) => {
+            if (e.target === demoModal) {
+                closeDemo();
+            }
+        });
+
+        function hitung(op) {
+            const a = parseFloat(document.getElementById('num1').value);
+            const b = parseFloat(document.getElementById('num2').value);
+            const output = document.getElementById('calc-output');
+
+            if (isNaN(a) || isNaN(b)) {
+                output.textContent = "Isi kedua angka!";
+                return;
+            }
+
+            let hasil = 0;
+            if (op === '+') hasil = a + b;
+            else if (op === '-') hasil = a - b;
+            else if (op === '*') hasil = a * b;
+            else if (op === '/') {
+                hasil = b === 0 ? "Tidak bisa dibagi 0" : Number((a / b).toFixed(4));
+            }
+            output.textContent = hasil;
+        }
+    </script>
+</body>
+</html>
